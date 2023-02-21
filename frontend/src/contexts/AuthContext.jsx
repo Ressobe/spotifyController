@@ -1,40 +1,11 @@
 import { createContext, useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-
-const SERVER = "http://127.0.0.1:8000";
+import { fetchToken, fetchTokenRefresh } from "../adapters/FetchTokens";
 
 const AuthContext = createContext();
 
 export default AuthContext;
-
-const fetchToken = async (username, password) => {
-  let data = await fetch(`${SERVER}/api/token/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ username: username, password: password }),
-  })
-    .then((response) => response.json())
-    .catch((err) => console.log(err));
-
-  return data;
-};
-
-const fetchTokenRefresh = async (authTokens) => {
-  let data = fetch(`${SERVER}/api/token/refresh/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ refresh: authTokens?.refresh }),
-  })
-    .then((response) => response.json())
-    .catch((err) => console.log(err));
-
-  return data;
-};
 
 export const AuthProvider = ({ children }) => {
   const checkAuthTokens = () => {
