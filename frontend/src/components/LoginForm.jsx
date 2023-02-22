@@ -52,7 +52,7 @@ function LoginForm({ login }) {
           </a>
         </div>
       </form>
-      <p class="text-center text-gray-500 text-xs">
+      <p className="text-center text-gray-500 text-xs">
         &copy;2023 Bartosz Sobina. All rights reserved.
       </p>
     </>
