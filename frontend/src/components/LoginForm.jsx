@@ -45,7 +45,7 @@ function LoginForm({ login }) {
         </div>
         <div className="text-center">
           <a
-            class="font-bold text-sm text-blue-500 hover:text-blue-800"
+            className="font-bold text-sm text-blue-500 hover:text-blue-800"
             href="/register"
           >
             Need account?

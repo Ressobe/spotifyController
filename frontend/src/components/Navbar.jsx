@@ -16,7 +16,7 @@ function Navbar() {
     return (
       <>
         <nav>
-          <div classname="fixed flex flex-row top-0 w-full p-3">
+          <div className="fixed flex flex-row top-0 w-full p-3">
             <div className="w-1/2 inline-block text-left px-3 "></div>
             <div className="w-1/2 inline-block text-right">
               <LogoutIcon />
@@ -34,7 +34,7 @@ function Navbar() {
     return (
       <>
         <nav>
-          <div classname="fixed flex flex-row top-0 w-full p-3">
+          <div className="fixed flex flex-row top-0 w-full p-3">
             <div className="w-1/2 inline-block text-left px-3 "></div>
             <div className="w-1/2 inline-block text-right">
               <RegisterIcon />
