@@ -1,8 +1,11 @@
+import ProfileForm from "../components/ProfileForm";
+
 function Profile() {
   return (
-    <div className="bg-stone-100 flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen">
       <div className="w-full max-w-xs text-center">
         <h1>Profile Page</h1>
+        <ProfileForm />
       </div>
     </div>
   );

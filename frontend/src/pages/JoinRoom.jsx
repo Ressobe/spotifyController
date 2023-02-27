@@ -1,7 +1,9 @@
 function JoinRoom() {
   return (
-    <div>
-      <h1>Join Room Page</h1>
+    <div className="flex justify-center items-center h-screen">
+      <div className="w-full max-w-xs text-center">
+        <h1>Join Room Page</h1>
+      </div>
     </div>
   );
 }
