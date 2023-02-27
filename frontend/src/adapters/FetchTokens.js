@@ -1,7 +1,7 @@
-import SERVER from "./ServerInfo";
+import { FETCH_TOKEN_URL, FETCH_TOKEN_REFRESH_URL } from "./ServerInfo";
 
 const fetchToken = async (username, password) => {
-  let data = await fetch(`${SERVER}/api/token/`, {
+  let data = await fetch(FETCH_TOKEN_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -15,7 +15,7 @@ const fetchToken = async (username, password) => {
 };
 
 const fetchTokenRefresh = async (authTokens) => {
-  let data = fetch(`${SERVER}/api/token/refresh/`, {
+  let data = fetch(FETCH_TOKEN_REFRESH_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

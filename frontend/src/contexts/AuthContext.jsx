@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
     setUser(jwt_decode(data.access));
     localStorage.setItem("authTokens", JSON.stringify(data));
 
-    navigate("/");
+    navigate("/profile");
   };
 
   const logoutUser = () => {
@@ -55,6 +55,8 @@ export const AuthProvider = ({ children }) => {
     let data = await fetchTokenRefresh(authTokens).then((data) => {
       return data;
     });
+    if (!data) return;
+
     if (data.detail) {
       console.log(data.detail);
       logoutUser();
