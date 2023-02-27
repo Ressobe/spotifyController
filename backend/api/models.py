@@ -14,6 +14,7 @@ class Profile(models.Model):
 
 
 class Room(models.Model):
+    host = models.OneToOneField(Profile, on_delete=models.CASCADE)
     max_size = models.IntegerField(default=2)
     pause = models.BooleanField(default=False, blank=False)
     skip = models.BooleanField(default=False, blank=False)
@@ -21,3 +22,4 @@ class Room(models.Model):
     volume_down = models.BooleanField(default=False, blank=False)
     select_next_song = models.BooleanField(default=False, blank=False)
     members = models.JSONField()
+    created = models.DateField(auto_now_add=True)
