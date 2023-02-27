@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function JoinRoomIcon() {
   return (
-    <div>
+    <div className="inline-block py-2">
       <Link to="/room/join">
         <button className="w-max h-max mx-4">
           <FontAwesomeIcon

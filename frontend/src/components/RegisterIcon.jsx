@@ -4,7 +4,7 @@ import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 function RegisterIcon() {
   return (
-    <>
+    <div className="inline-block py-2">
       <Link to="/register">
         <button className="w-max h-max mx-4">
           <FontAwesomeIcon
@@ -14,7 +14,7 @@ function RegisterIcon() {
           />
         </button>
       </Link>
-    </>
+    </div>
   );
 }
 

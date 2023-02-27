@@ -7,7 +7,7 @@ function LogoutIcon() {
   const { logoutUser } = useContext(AuthContext);
 
   return (
-    <>
+    <div className="inline-block py-2">
       <button className="w-max h-max mx-4" onClick={logoutUser}>
         <FontAwesomeIcon
           icon={faRightFromBracket}
@@ -15,7 +15,7 @@ function LogoutIcon() {
           className="hover:opacity-80"
         />
       </button>
-    </>
+    </div>
   );
 }
 
