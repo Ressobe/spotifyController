@@ -30,7 +30,6 @@ class RegisterSerializer(serializers.ModelSerializer):
             username=validated_data['username'],
             email=validated_data['email'],
         )
-
         user.set_password(validated_data['password'])
         user.save()
 
@@ -40,7 +39,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 class ProfileSerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField(required=True)
     client_id = serializers.CharField(write_only=True, required=True)
     client_secret = serializers.CharField(write_only=True, required=True)
 
@@ -49,15 +47,13 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = ('id', 'client_id', 'client_secret')
 
 
-    def create(self, validated_data):
+    def update(self, instance, validated_data):
+        instance.client_id = validated_data["client_id"]
+        instance.client_secret = validated_data["client_secret"]
 
-        profile = Profile.objects.filter(id=validated_data["id"]).first()
-        profile.client_id = validated_data["client_id"]
-        profile.client_secret = validated_data["client_secret"]
+        instance.save()
 
-        profile.save()
-
-        return profile
+        return instance
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):

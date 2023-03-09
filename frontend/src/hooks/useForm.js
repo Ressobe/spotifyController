@@ -5,10 +5,10 @@ function useForm(initialValues) {
 
   return [
     values,
-    (e) => {
+    (name, value) => {
       setValues({
         ...values,
-        [e.target.name]: e.target.value,
+        [name]: value,
       });
     },
   ];

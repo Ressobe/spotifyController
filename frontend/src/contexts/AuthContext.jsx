@@ -1,26 +1,26 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useCallback } from "react";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { fetchToken, fetchTokenRefresh } from "../adapters/FetchTokens";
+import { TOKEN_EXPIRE_TIME } from "../adapters/ServerInfo";
 
 const AuthContext = createContext();
 
 export default AuthContext;
 
+const checkAuthTokens = () => {
+  let token = localStorage.getItem("authTokens");
+  return token ? JSON.parse(token) : null;
+};
+
+const checkUser = () => {
+  let token = localStorage.getItem("authTokens");
+  return token ? jwt_decode(token) : null;
+};
+
 export const AuthProvider = ({ children }) => {
-  const checkAuthTokens = () => {
-    let token = localStorage.getItem("authTokens");
-    return token ? JSON.parse(token) : null;
-  };
-
-  const checkUser = () => {
-    let token = localStorage.getItem("authTokens");
-    return token ? jwt_decode(token) : null;
-  };
-
   let [authTokens, setAuthTokens] = useState(() => checkAuthTokens());
   let [user, setUser] = useState(() => checkUser());
-  let [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -66,27 +66,21 @@ export const AuthProvider = ({ children }) => {
     setAuthTokens(data);
     setUser(jwt_decode(data.access));
     localStorage.setItem("authTokens", JSON.stringify(data));
-
-    if (loading) {
-      setLoading(false);
-    }
   };
 
+  const initUpdateToken = useCallback(() => {
+    updateToken();
+  });
+
   useEffect(() => {
-    if (loading) {
-      updateToken();
-    }
-
-    let fourteenMinutes = 1000 * 60 * 14;
-
     let interval = setInterval(() => {
       if (authTokens) {
-        updateToken();
+        initUpdateToken();
       }
-    }, fourteenMinutes);
+    }, TOKEN_EXPIRE_TIME);
 
     return () => clearInterval(interval);
-  }, [authTokens, loading]);
+  }, [authTokens, initUpdateToken]);
 
   let contextData = {
     profile: user,
@@ -94,7 +88,5 @@ export const AuthProvider = ({ children }) => {
     logoutUser: logoutUser,
   };
 
-  return (
-    <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>;
 };
