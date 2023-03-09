@@ -1,7 +1,7 @@
 import SERVER from "./ServerInfo";
 
 const fetchToken = async (username, password) => {
-  let data = await fetch(`${SERVER}/api/token/`, {
+  let data = await fetch(`${SERVER}token/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -15,7 +15,7 @@ const fetchToken = async (username, password) => {
 };
 
 const fetchTokenRefresh = async (authTokens) => {
-  let data = fetch(`${SERVER}/api/token/refresh/`, {
+  let data = fetch(`${SERVER}token/refresh/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

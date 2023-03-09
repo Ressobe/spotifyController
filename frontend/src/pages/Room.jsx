@@ -1,5 +1,11 @@
+import PageWrapper from "../components/PageWrapper";
+
 function Room() {
-  return <h1>Room Page</h1>;
+  return (
+    <PageWrapper>
+      <h1>Room Page</h1>
+    </PageWrapper>
+  );
 }
 
 export default Room;
